@@ -63,16 +63,20 @@ def main():
             print(f"  {classes[j]}: {prob.item():.4f}")
 
     # Compute gradients for creating an adversarial example
-    target_class = 5  # Let's say we want to misclassify everything as 'dog'
-    loss = nn.functional.cross_entropy(outputs, torch.full_like(labels, target_class))
+    loss = nn.functional.cross_entropy(outputs, labels)
+    net.zero_grad()
     loss.backward()
 
     # Create adversarial example using FGSM
-    epsilon = 0.01
+    epsilon = 0.007
     adversarial_images = images + epsilon * images.grad.sign()
 
     # Clamp to ensure valid pixel range
-    adversarial_images = torch.clamp(adversarial_images, 0, 1)
+    means = torch.tensor([0.485, 0.456, 0.406]).view(3, 1, 1)  # why .view(3,1,1)
+    stds = torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
+    min_vals = (0 - means) / stds
+    max_vals = (1 - means) / stds
+    adversarial_images = torch.clamp(adversarial_images, min_vals, max_vals)
 
     # Test the adversarial example
     with torch.no_grad():
