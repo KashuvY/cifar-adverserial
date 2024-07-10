@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
-from cnn import ResNet  # Assuming you've saved the ResNet class in a file named resnet.py
+from models import ResNet  # Assuming you've saved the ResNet class in a file named resnet.py
 from plot_images import imshow
 
 def main():

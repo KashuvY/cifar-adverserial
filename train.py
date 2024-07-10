@@ -7,7 +7,7 @@ import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
 
-from cnn import Net, ResNet
+from models import Net, ResNet
 from plot_images import imshow
 
 def main():
