@@ -13,7 +13,7 @@ Adversarial examples:
 White box attacks:
   - Projected Gradient Descent
   - Fast gradient sign method (FGSM, Goodfellow et al. 2015)
-  - Carlini-Wagner attack (Carlini and Wagner et al. 20170
+  - Carlini-Wagner attack (Carlini and Wagner et al. 2017)
   - Universal Adversarial Perturbations (Moosavi and Dezfooli et al. 2017)
 
 Black box attacks:
